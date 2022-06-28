@@ -57,11 +57,29 @@ public class Validator {
         String input;
         String[] phoneStrings;
         do {
-            int sizeList = getSize(0, Integer.MAX_VALUE);
+            int sizeList = getSize(0, 8388607);
             phoneStrings = new String[sizeList];
+            boolean check = false;
             for (int i = 0; i < sizeList; i++) {
-                input = getStringWithRegex(true, "\\(?([0-9]{3})\\)?([ .-]?)([0-9]{3})\\2([0-9]{4})", "Enter phone number " + i + " : ", "plss follow this \\(?([0-9]{3})\\)?([ .-]?)([0-9]{3})\\2([0-9]{4})");
-                phoneStrings[i] = input;
+                do {
+                    check = false;
+                    input = getStringWithRegex(true, "\\(?([0-9]{3})\\)?([ .-]?)([0-9]{3})\\2([0-9]{4})", "Enter phone number " + (i + 1) + " : ", "plss follow this \\(?([0-9]{3})\\)?([ .-]?)([0-9]{3})\\2([0-9]{4})");
+
+                    for (String phoneString : phoneStrings) {
+                        if (input.equals(phoneString)) {
+                            System.out.println("Phone Number is exsit in list!!!");
+                            check = true;
+                        }
+
+                    }
+                    if (check == true) {
+
+                    } else {
+                        phoneStrings[i] = input;                      
+                    }
+
+                } while (check);
+                
             }
             break;
         } while (true);
@@ -79,10 +97,12 @@ public class Validator {
                 choice = Integer.parseInt(a);
                 if (choice >= min && choice <= max) {
                     break;
+                } else {
+                    System.out.println("size must be " + min + " < " + " < " + max);
                 }
 
             } catch (Exception e) {
-                System.out.println("size must be integer");
+                System.out.println("cant pasre");
             }
 
         }

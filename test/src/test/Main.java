@@ -18,6 +18,7 @@ public class Main {
         String[] phone_list = {"0915931786", "0972188633"};
         List<PhoneBook> phoneBooks = new ArrayList<PhoneBook>();
         PhoneBook book = new PhoneBook("Bui", phone_list, "fifakillmen@gmail.com", "haNoi", "Family");
+        
         phoneBooks.add(book);
         while (true) {
             System.out.println("======PhoneBook Management=====");
@@ -37,7 +38,7 @@ public class Main {
                     
                 }
                 case "2": {
-                   // phoneBooks = pm.addnewphoneNumber(phoneBooks);
+                    phoneBooks = pm.addnewphoneNumber(phoneBooks);
                     break;
                     
                 }
@@ -47,7 +48,7 @@ public class Main {
                     
                 }
                 case "4": {
-                    //pm.findAll();
+                    pm.findPhoneNumberListByName(phoneBooks);
                     break;
                     
                 }
